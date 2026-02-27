@@ -1,0 +1,1 @@
+alert("PAULO SENSI APP FUNCIONANDO 🔥");
