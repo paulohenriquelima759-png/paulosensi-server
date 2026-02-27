@@ -3,25 +3,24 @@ const cors = require("cors");
 const path = require("path");
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+// 👇 ISSO AQUI FAZ O SITE ABRIR
+app.use(express.static(path.join(__dirname, "web")));
 
-// ✅ Serve a pasta web (onde fica index.html, app.js, style.css, data.js)
-const WEB_DIR = path.join(__dirname, "web");
-app.use(express.static(WEB_DIR));
-
-// ✅ Ping do app
+// ROTA PING
 app.get("/api/ping", (req, res) => {
   res.json({ ok: true });
 });
 
-// ✅ Página inicial do site
-app.get("/", (req, res) => {
-  res.sendFile(path.join(WEB_DIR, "index.html"));
+// SE ABRIR O SITE, MANDA O INDEX.HTML
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "web", "index.html"));
 });
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
-}
+});
