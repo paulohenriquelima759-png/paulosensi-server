@@ -1,36 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PAULSENSIAPP</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PAULSENSIAPP</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="container">
+  <header class="top">
+    <img id="logoTap" src="logo.png" class="logo" alt="PAULO SENSI" />
+    <div class="topText">
+      <h1>PAULSENSIAPP</h1>
+      <p id="status" class="muted">Carregando…</p>
+    </div>
+  </header>
 
-<img src="https://i.imgur.com/Vz7sKqR.png" width="200">
+  <!-- HOME -->
+  <main id="screenHome" class="screen">
+    <div class="card">
+      <h2>Planos</h2>
 
-<h1>PAULSENSIAPP</h1>
+      <div class="plans">
+        <div class="plan">
+          <h3>Grátis</h3>
+          <p>Alguns modelos + básico</p>
+          <button class="btn ghost" id="btnFree">Usar grátis</button>
+        </div>
 
-<p id="status">Carregando...</p>
+        <div class="plan">
+          <h3>Padrão</h3>
+          <p class="price">R$ 9,99</p>
+          <p>Mais modelos + efeitos</p>
+          <button class="btn" id="btnPadrao">Já paguei</button>
+        </div>
 
-<button onclick="startApp()">Começar</button>
+        <div class="plan">
+          <h3>Premium</h3>
+          <p class="price">R$ 19,50</p>
+          <p>Tudo liberado + animado</p>
+          <button class="btn" id="btnPremium">Já paguei</button>
+        </div>
+      </div>
 
-<div id="app" style="display:none;">
-<h2>Escolha sua marca:</h2>
+      <hr class="sep">
+      <button class="btn" id="btnOpenLogin">Entrar (cliente)</button>
 
-<button onclick="alert('Samsung DPI: 600\nSensi: 95')">Samsung</button>
-<button onclick="alert('Xiaomi DPI: 580\nSensi: 92')">Xiaomi</button>
-<button onclick="alert('Motorola DPI: 560\nSensi: 90')">Motorola</button>
+      <p class="muted" style="margin-top:10px">
+        Dono: toque <b>5x</b> na logo para abrir o painel.
+      </p>
+    </div>
+  </main>
 
-</div>
+  <!-- APP -->
+  <main id="screenApp" class="screen hidden">
+    <div class="card">
+      <h2 id="welcomeTitle">Bem-vindo</h2>
+      <p id="planInfo" class="muted"></p>
 
-</div>
+      <div class="grid" id="brandGrid"></div>
 
-<script src="app.js"></script>
+      <div id="result" class="result hidden">
+        <h3 id="resultTitle"></h3>
+        <p><b>Sensi:</b> <span id="rSensi"></span></p>
+        <p><b>DPI:</b> <span id="rDpi"></span></p>
+        <p><b>Botão:</b> <span id="rBtn"></span></p>
+        <button class="btn ghost" id="btnCloseResult">Fechar</button>
+      </div>
 
+      <button class="btn ghost" id="btnLogout">Sair</button>
+    </div>
+  </main>
+
+  <!-- LOGIN CLIENTE -->
+  <div id="modalLogin" class="modal hidden">
+    <div class="modalCard">
+      <h2>Entrar</h2>
+      <p class="muted">Digite o email e senha que você recebeu no WhatsApp.</p>
+
+      <label>Email</label>
+      <input id="loginEmail" type="email" placeholder="seuemail@gmail.com"/>
+
+      <label>Senha</label>
+      <input id="loginPass" type="password" placeholder="••••••••"/>
+
+      <button class="btn" id="btnDoLogin">Entrar</button>
+      <button class="btn ghost" id="btnCloseLogin">Fechar</button>
+
+      <p id="loginErr" class="err"></p>
+    </div>
+  </div>
+
+  <!-- PAINEL DONO -->
+  <div id="modalOwner" class="modal hidden">
+    <div class="modalCard">
+      <h2>Painel do Dono</h2>
+      <p class="muted">Acesso restrito.</p>
+
+      <div id="ownerLoginBox">
+        <label>Email</label>
+        <input id="ownerEmail" type="email" placeholder="dono@gmail.com"/>
+
+        <label>Senha</label>
+        <input id="ownerPass" type="password" placeholder="••••••••"/>
+
+        <button class="btn" id="btnOwnerLogin">Entrar</button>
+        <p id="ownerErr" class="err"></p>
+      </div>
+
+      <div id="ownerPanel" class="hidden">
+        <h3>Criar cliente</h3>
+
+        <label>Email</label>
+        <input id="cEmail" type="email" placeholder="cliente@gmail.com"/>
+
+        <label>Senha</label>
+        <input id="cPass" type="text" placeholder="senha para mandar no WhatsApp"/>
+
+        <label>Plano</label>
+        <select id="cPlan">
+          <option value="FREE">Grátis</option>
+          <option value="PADRAO">Padrão</option>
+          <option value="PREMIUM">Premium</option>
+        </select>
+
+        <label>Dias de validade</label>
+        <input id="cDays" type="number" value="30"/>
+
+        <button class="btn" id="btnCreateClient">Criar</button>
+
+        <hr class="sep">
+
+        <h3>Clientes</h3>
+        <button class="btn ghost" id="btnRefreshUsers">Atualizar lista</button>
+        <div id="usersList" class="users"></div>
+      </div>
+
+      <button class="btn ghost" id="btnCloseOwner">Fechar</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
 </body>
-</html>
+  </html>
