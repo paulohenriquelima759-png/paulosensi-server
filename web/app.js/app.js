@@ -1,5 +1,5 @@
-function usarGratis() {
-  document.getElementById("sensi").innerText = "90";
-  document.getElementById("dpi").innerText = "500";
-  document.getElementById("botao").innerText = "60%";
+function usarGratis(){
+  document.getElementById("sensi").innerText = "95";
+  document.getElementById("dpi").innerText = "411";
+  document.getElementById("botao").innerText = "55%";
 }
