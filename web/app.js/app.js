@@ -1,16 +1,21 @@
-window.usarGratis = function () {
-  const s = document.getElementById("sensi");
-  const d = document.getElementById("dpi");
-  const b = document.getElementById("botao");
+// PAULSENSIAPP - app.js
 
-  if (!s || !d || !b) {
-    alert("ERRO: faltou ID sensi/dpi/botao no HTML");
-    return;
-  }
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
 
-  s.innerText = "95";
-  d.innerText = "420";
-  b.innerText = "55%";
+function usarGratis() {
+  // Valores grátis (exemplo)
+  setText("sensi", "95");
+  setText("dpi", "420");
+  setText("botao", "55%");
 
-  alert("Grátis aplicado ✅");
-};
+  // Só pra confirmar que clicou
+  console.log("usarGratis OK");
+}
+
+// Se der erro no JS, ele mostra um alerta (pra você ver o problema)
+window.addEventListener("error", (e) => {
+  alert("ERRO no app.js: " + (e.message || "desconhecido"));
+});
